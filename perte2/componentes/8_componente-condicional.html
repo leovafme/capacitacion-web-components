@@ -1,0 +1,51 @@
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+<link rel="import"
+      href="../bower_components/iron-input/iron-input.html">
+
+<link rel="import"
+      href="../bower_components/paper-checkbox/paper-checkbox.html">
+
+
+<dom-module id="componente-condicional">
+  <template>
+    <h2>Ejemplo dom-if</h2>
+    <template is="dom-if" if="{{check}}">
+      Holaaa ya soy visible :D
+    </template>
+    <br>
+    <paper-checkbox checked="{{check::change}}">click aqui!</paper-checkbox>
+
+    <hr>
+    <h2>Ejemplo dom-repeat</h2>
+    <template is="dom-repeat" items="{{trabajadores}}">
+        <div># <span>{{index}}</span></div>
+        <div>Primer Nombre: <span>{{item.primer_nombre}}</span></div>
+        <div>Segundo Nombre: <span>{{item.segundo_nombre}}</span></div>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: "componente-condicional",
+      properties: {
+        check: {
+          type: Boolean,
+          value: false
+        }
+      },
+      ready: function() {
+        this.trabajadores = [
+            {primer_nombre: 'Bob', segundo_nombre: 'Smith'},
+            {primer_nombre: 'Sally', segundo_nombre: 'Johnson'}
+        ];
+      }
+    });
+
+
+
+
+  </script>
+
+</dom-module>

@@ -1,0 +1,20 @@
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+<dom-module id="mi-nombre">
+
+  <template>
+    Hola mi nombre es<b>{{nombre}}</b> y estoy en el componente.
+
+  </template>
+
+  <script>
+    Polymer({
+      is: "mi-nombre",
+      ready: function() {
+        this.nombre = "Daniel";
+      }
+    });
+  </script>
+
+</dom-module>

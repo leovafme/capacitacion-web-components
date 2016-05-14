@@ -1,0 +1,29 @@
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+<link rel="import"
+      href="../bower_components/iron-input/iron-input.html">
+
+<dom-module id="nombre-editable">
+
+  <template>
+    <p>
+    Esto es un nombre editado: <strong>{{nombre}}</strong>.
+    </p>
+    <input is="iron-input" bind-value="{{nombre}}"
+      placeholder="Tu nombre aqui...">
+  </template>
+
+  <script>
+    Polymer({
+      is: "nombre-editable",
+      properties: {
+        nombre: {
+          type: String,
+          value: "Leonardo"
+        }
+      }
+    });
+  </script>
+
+</dom-module>

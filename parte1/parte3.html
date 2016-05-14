@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+
+  <body>
+    <mi-componente-con-plantilla></mi-componente-con-plantilla>
+    <p>
+      hola mundo otro texto
+    </p>
+  </body>
+
+
+  <template id="plantilla">
+    <style>
+      p { color: orange; }
+    </style>
+    <p>yo soy un Shadow DOM. fui empaquetado en un &lt;template&gt;.</p>
+  </template>
+
+  <script>
+    var proto = Object.create(HTMLElement.prototype, {
+      createdCallback: {
+        value: function() {
+          var t = document.querySelector('#plantilla');
+          var clone = document.importNode(t.content, true);
+          this.createShadowRoot().appendChild(clone);
+        }
+      }
+    });
+    document.registerElement('mi-componente-con-plantilla', {prototype: proto});
+  </script>
+
+</html>

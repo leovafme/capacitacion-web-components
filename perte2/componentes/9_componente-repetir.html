@@ -1,0 +1,54 @@
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+<link rel="import"
+      href="../bower_components/iron-input/iron-input.html">
+
+<link rel="import"
+      href="../bower_components/paper-checkbox/paper-checkbox.html">
+
+
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<dom-module id="componente-repetir">
+  <template>
+    <iron-ajax id="peticion"
+      auto
+      url="http://jsonplaceholder.typicode.com/posts"
+      handle-as="json"
+      last-response="{{posts}}"></iron-ajax>
+
+    <h2>Ejemplo dom-repeat avanzado</h2>
+
+    <template is="dom-repeat" items="{{posts}}">
+      <paper-card heading="Post #{{item.id}}">
+        <div class="card-content">{{item.body}}</div>
+        <div class="card-actions">
+          <paper-button>Ver detalle</paper-button>
+        </div>
+      </paper-card>
+    </template>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: "componente-repetir",
+      properties: {
+        trabajadores: {
+          type: Object,
+          value:[]
+        }
+      }
+    });
+
+
+
+
+  </script>
+
+</dom-module>

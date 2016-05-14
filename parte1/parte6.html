@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <link href="imports/post.html" rel="import" />
+
+  </head>
+
+  <body>
+  </body>
+
+  <script>
+  var post = document.querySelector('link[rel="import"]').import;
+  var article = post.querySelector('.post');
+  document.body.appendChild(article.cloneNode(true));
+
+  </script>
+
+</html>

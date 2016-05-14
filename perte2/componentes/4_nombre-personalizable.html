@@ -1,0 +1,23 @@
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+<dom-module id="nombre-personalizable">
+
+  <template>
+    Hola mi nombre es<b>{{nombre}}</b> fue personalizado.
+
+  </template>
+
+  <script>
+    Polymer({
+      is: "nombre-personalizable",
+      properties: {
+        nombre: {
+          type: String,
+          value: "Leonardo"
+        }
+      }
+    });
+  </script>
+
+</dom-module>

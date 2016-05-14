@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+
+  <body>
+    <mi-componente></mi-componente>
+  </body>
+  <script type="text/javascript">
+  var MiComponenteProto = Object.create(HTMLElement.prototype);
+
+  MiComponenteProto.createdCallback = function() {
+
+    var shadow = this.createShadowRoot();
+
+    shadow.innerHTML = "<b>yo soy un elemento del Shadow DOM!</b>";
+  };
+
+  var MiCp = document.registerElement('mi-componente', {prototype: MiComponenteProto});
+  </script>
+</html>

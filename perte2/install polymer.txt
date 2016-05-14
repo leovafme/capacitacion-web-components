@@ -1,0 +1,15 @@
+1-Installing with Bower
+
+2-crear el bower.json
+
+bower init
+
+3- instalar polymer
+
+bower install --save Polymer/polymer
+
+
+installar todos los componentes
+
+bower install polymerelements/iron-elements
+bower install polymerelements/paper-elements

@@ -1,0 +1,123 @@
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+<link rel="import"
+      href="../bower_components/iron-input/iron-input.html">
+
+<link rel="import"
+      href="../bower_components/paper-checkbox/paper-checkbox.html">
+
+
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+
+<link rel="import" href="../bower_components/iron-icons/av-icons.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+
+
+<dom-module id="componente-repetir">
+  <template>
+    <style media="screen">
+      paper-button{
+        background-color: #F92B2B;
+        color: #fff;
+      }
+      paper-card{
+        margin-top: 10px;
+      }
+    </style>
+    <iron-ajax id="peticion"
+      auto
+      url="http://jsonplaceholder.typicode.com/posts"
+      handle-as="json"
+      on-response="respuesta"></iron-ajax>
+
+    <h2>Ejemplo dom-repeat avanzado</h2>
+
+    <strong>post con mas puntos: {{numeroUno}}</strong><br>
+
+    <input value="{{buscarString::input}}">
+    <paper-icon-button icon="av:sort-by-alpha"></paper-icon-button>
+    <select value="{{filtroVal::change}}">
+      <option value="id">Id</option>
+      <option value="title">Title</option>
+      <option value="body">Body</option>
+      <option value="puntos">Puntos</option>
+    </select>
+    <hr>
+    <template is="dom-repeat" items="{{posts}}" filter="{{filtrar(buscarString)}}" sort="{{_filtrar(filtroVal)}}">
+      <paper-card heading="Post #{{item.id}}">
+        <div class="card-content">
+          <strong>{{item.title}}</strong>
+          <br>
+          {{item.body}}
+        </div>
+        <div class="card-actions">
+          <paper-button on-click="sumarPunto">+ {{item.puntos}}</paper-button>
+        </div>
+      </paper-card>
+    </template>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: "componente-repetir",
+      properties: {
+        posts: {
+          type: Object,
+          value:[]
+        },
+        numeroUno:{
+          type:String,
+          value:''
+        }
+      },
+      respuesta:function(e) {
+        //r = respuesta
+        var posts = e.detail.response;
+        var mayor = 0;
+        posts.map(function(post) {
+          var puntos = Math.floor(Math.random() * (100 - 0));
+          post['puntos'] = puntos;
+          mayor = (puntos > mayor)? puntos: mayor;
+          return post;
+        });
+
+        this.posts = posts;
+
+        this.numeroUno = mayor;
+      },
+      sumarPunto:function(e) {
+        var model = e.model;
+        model.set('item.puntos', model.item.puntos+1);
+      },
+      filtrar:function(string) {
+        if (!string) {
+          return null;
+        } else {
+          string = string.toLowerCase();
+          return function(post) {
+            var titulo = post.title.toLowerCase();
+            return titulo.indexOf(string) != -1
+          };
+        }
+      },
+      _filtrar: function(val) {
+        return function(a, b) {
+          if (a[val] === b[val]) return 0;
+          return a[val] < b[val] ? -1 : 1;
+        }
+      }
+    });
+
+
+
+
+  </script>
+
+</dom-module>

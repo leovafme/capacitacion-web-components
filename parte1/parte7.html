@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+  </head>
+
+  <body>
+    <button is="x-foo-button"></button>
+  </body>
+
+  <script>
+  var XFooButtonPrototype = Object.create(HTMLButtonElement.prototype);
+  XFooButtonPrototype.createdCallback = function() {
+    this.textContent = "I'm an x-foo button!";
+    this.style.background = '#948';
+  };
+
+  var XFooButton = document.registerElement('x-foo-button', {
+    prototype: XFooButtonPrototype,
+    extends: 'button'
+  });
+
+
+  </script>
+
+</html>

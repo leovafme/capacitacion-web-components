@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+
+  <body>
+
+    <template id="itTemplate">
+      <dl>
+        <template>
+          <dt></dt><dd></dd>
+        </template>
+      </dl>
+    </template>
+
+  </body>
+
+  <script>
+    actores = [
+          {'nombre' : 'Chris O\'Dowd', 'personaje' : 'Roy Trenneman'},
+          {'nombre' : 'Richard Ayoade', 'personaje' : 'Maurice Moss'},
+          {'nombre' : 'Katherine Parkinson', 'personaje' : 'Jen Barber'}
+      ];
+
+    var t = document.querySelector('#itTemplate');
+    var t2 = t.content.querySelector('template');
+      var dt = t2.content.querySelector('dt');
+      var dd = t2.content.querySelector('dd');
+      var dl = t.content.querySelector('dl');
+      actores.forEach(function(actor) {
+          dtClone = dt.cloneNode(true);
+          ddClone = dd.cloneNode(true);
+          dtClone.textContent = actor.nombre;
+          ddClone.textContent = actor.personaje;
+          dl.appendChild(dtClone);
+          dl.appendChild(ddClone);
+      });
+
+    var clone = document.importNode(t.content, true);
+
+    document.body.appendChild(clone);
+  </script>
+
+</html>
